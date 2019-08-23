@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>제이쿼리 목록 호버 방향 효과</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <link rel="stylesheet" href="">
+  <!-- fancybox -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <!-- 호버 방향 효과 플러그인 -->
+  <link rel="stylesheet" href="./jquery.hoverdir.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+  </style>
+</head>
+
+<body>
+  <section>
+    <h2 style="font-size: 32px;text-align: center;margin: 1em;">방향 호버 효과 + 팬시박스</h2>
+    <div class="container">
+        <div class="menu" id="menu">
+            <a href="#menu" class="btn-all">all</a>
+            <a href="#menu" class="btn-name1">name1</a>
+            <a href="#menu" class="btn-name2">name2</a>
+          </div>
+      <ul id="da-thumbs" class="da-thumbs name1">
+        <li class="grid-item name1">
+          <a data-fancybox="gallery" href="http://placeimg.com/400/400/1">
+            <img src="http://placeimg.com/400/400/1" />
+            <div><span>내 작품 제목(팬시박스 열기)</span></div>
+          </a>
+        </li>
+        <li class="grid-item name1">
+          <a data-fancybox="gallery" href="http://placehold.it/400x400&text=2">
+            <img src="http://placehold.it/400x400&text=2" />
+            <div><span>내 작품 제목(팬시박스 열기)</span></div>
+          </a>
+        </li>
+        <li class="grid-item name2">
+          <a href="https://cafe.naver.com/csslick">
+            <img src="http://placehold.it/400x400&text=2" />
+            <div><span>내 작품 제목(작품 상세페이지 이동)</span></div>
+          </a>
+        </li>
+        <li class="grid-item name2">
+          <a href="#">
+            <img src="http://placeimg.com/400/400/4" />
+            <div><span>내 작품 제목</span></div>
+          </a>
+        </li>
+        <li class="grid-item name3">
+          <a href="#">
+            <img src="http://placeimg.com/400/400/5" />
+            <div><span>내 작품 제목</span></div>
+          </a>
+        </li>
+        <li class="grid-item name3">
+          <a href="#">
+            <img src="http://placeimg.com/400/400/6" />
+            <div><span>내 작품 제목</span></div>
+          </a>
+        </li>
+        <li class="grid-item name3">
+          <a href="#">
+            <img src="http://placeimg.com/400/400/4" />
+            <div><span>내 작품 제목</span></div>
+          </a>
+        </li>
+        <li class="grid-item">
+          <a href="#">
+            <img src="http://placeimg.com/400/400/5" />
+            <div><span>내 작품 제목</span></div>
+          </a>
+        </li>
+        <li class="grid-item">
+          <a href="#">
+            <img src="http://placeimg.com/400/400/6" />
+            <div><span>내 작품 제목</span></div>
+          </a>
+        </li>
+      </ul>
+    </div><!-- end container -->
+
+  </section>
+
+
+  <script src="./jquery.hoverdir.js"></script>
+  <script type="text/javascript">
+    $(function () {
+
+      $('.container').imagesLoaded(function () {
+        // 선택할 목록 지정
+        $('.da-thumbs').isotope({
+          // options
+          itemSelector: '.grid-item',
+          layoutMode: 'fitRows'
+        });
+
+        // 전체 목록
+        $('.btn-all').on('click', function () {
+          $('.da-thumbs').isotope({ filter: '*' })
+        });
+
+        // name1
+        $('.btn-name1').on('click', function () {
+          $('.da-thumbs').isotope({ filter: '.name1' })
+        });
+
+        // name2
+        $('.btn-name2').on('click', function () {
+          $('.da-thumbs').isotope({ filter: '.name2' })
+        });        
+
+        // 호버 효과
+        $('#da-thumbs > li').hoverdir();
+
+      }) // end imageLoaded
+
+
+    }); // end $()
+
+  </script>
+</body>
+
+</html>
